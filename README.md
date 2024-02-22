@@ -1,6 +1,6 @@
 
 
-  # Información Técnica del proyecto Hackode 2024
+  # Información Técnica del proyecto Hackode - Back End 2024
   
   ### <sub> - Tecnologías aplicadas - </sub>
   
