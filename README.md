@@ -1,6 +1,9 @@
 
 
   # Información Técnica del proyecto Hackode - Back End 2024
+
+   # Integrantes
+  
   
   ### <sub> - Tecnologías aplicadas - </sub>
   
