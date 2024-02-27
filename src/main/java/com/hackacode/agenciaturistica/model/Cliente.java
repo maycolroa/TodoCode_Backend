@@ -12,4 +12,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class Cliente {
+    private Long Id;
+    private String nombre;
+    private String apellido;
+    private String direccion;
+    private String dni;
+    private String email;
+    private String celular;
+    private String nacionalidad;
 }
