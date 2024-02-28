@@ -1,17 +1,6 @@
 package com.hackacode.agenciaturistica.dto;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class ClienteDTO {
-
+public class EmpleadoDTO {
 
     private String nombre;
     private String apellido;
@@ -20,4 +9,7 @@ public class ClienteDTO {
     private String email;
     private String celular;
     private String nacionalidad;
+
+    private String cargo;
+    private double sueldo;
 }

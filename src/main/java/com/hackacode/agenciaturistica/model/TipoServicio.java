@@ -15,9 +15,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class TipoServicio {
-    @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE)
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id_type;
     private String name;
 

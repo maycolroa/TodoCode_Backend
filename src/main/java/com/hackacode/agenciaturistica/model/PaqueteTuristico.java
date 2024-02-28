@@ -1,6 +1,9 @@
 package com.hackacode.agenciaturistica.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +17,9 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 public class PaqueteTuristico {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long codigo_paquete ;
     private double costo_paquete;
     private double descuento;
