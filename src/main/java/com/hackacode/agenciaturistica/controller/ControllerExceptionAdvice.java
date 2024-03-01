@@ -1,6 +1,7 @@
 package com.hackacode.agenciaturistica.controller;
 
 import com.hackacode.agenciaturistica.exception.ErrorDetails;
+import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,18 @@ public class ControllerExceptionAdvice {
         errorDetails.setMessage(ex.getMessage());
 
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorDetails);
+    }
+
+
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler({HibernateOperationException.class, })
+    public ResponseEntity<ErrorDetails> handleHIbernateOperationException(HibernateOperationException ex) {
+
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value() + " HIBERNATE_ERROR");
+        errorDetails.setMessage(ex.getMessage());
+
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorDetails);
     }
 
 

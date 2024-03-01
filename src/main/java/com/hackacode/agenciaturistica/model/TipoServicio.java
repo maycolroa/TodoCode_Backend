@@ -20,6 +20,7 @@ public class TipoServicio {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id_type;
     private String name;
+    private String descripcion;
 
 
 }
