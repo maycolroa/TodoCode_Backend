@@ -1,4 +1,10 @@
 package com.hackacode.agenciaturistica.service;
 
-public class IServicioService {
+import com.hackacode.agenciaturistica.dto.ServicioDTO;
+
+import java.util.List;
+
+public interface IServicioService {
+
+    public List<ServicioDTO> getAll();
 }

@@ -23,5 +23,5 @@ public class Pago {
 
     private double montoTotal;
 
-    private TipoPago tipopago;
+    private TipoPago tipoPago;
 }
