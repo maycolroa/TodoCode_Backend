@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface IClienteService {
 
-    public List<ClienteDTO> getAll();
+    public List<ClienteDTO> getAllClientes();
 
     public ClienteDTO getClienteById(Long idCliente) throws IdNotFoundException;
 

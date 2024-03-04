@@ -17,6 +17,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class ClienteDTO {
 
+    private Long Id;
+
     @NotNull(message = "No se permite un nombre vacio")
     @Size(min = 4, message = "Como mínimo debe tener 4 caracteres")
     private String nombre;

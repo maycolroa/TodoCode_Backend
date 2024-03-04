@@ -18,8 +18,8 @@ public class ClienteController {
     private ClienteService clienteService;
 
     @GetMapping("/all")
-    public List<ClienteDTO> getAll(){
-        return clienteService.getAll();
+    public List<ClienteDTO> getAllClientes(){
+        return clienteService.getAllClientes();
     }
 
     @GetMapping("/{idCliente}")

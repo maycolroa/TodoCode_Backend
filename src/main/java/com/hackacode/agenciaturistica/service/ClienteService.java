@@ -22,7 +22,7 @@ public class ClienteService implements IClienteService {
     private ModelMapper modelMapper;
 
     @Override
-    public List<ClienteDTO> getAll() {
+    public List<ClienteDTO>getAllClientes() {
         List<Cliente> clientes = clienteRepository.findAll();
 
         ArrayList<ClienteDTO> clientesDTO = new ArrayList<ClienteDTO>();
