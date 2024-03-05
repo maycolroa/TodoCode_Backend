@@ -3,6 +3,7 @@ package com.hackacode.agenciaturistica.dto;
 import com.hackacode.agenciaturistica.model.Cliente;
 import com.hackacode.agenciaturistica.model.Empleado;
 import com.hackacode.agenciaturistica.model.Pago;
+import com.hackacode.agenciaturistica.model.TipoPago;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +22,6 @@ public class VentaAbstractDTO {
 
     protected Empleado empleado;
 
-    protected Pago pago;
+    protected TipoPago tipoPago;
 
 }

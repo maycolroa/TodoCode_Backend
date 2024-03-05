@@ -18,7 +18,7 @@ public class TipoServicio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id_type;
+    private Long Id_tipo;
     private String name;
     private String descripcion;
 

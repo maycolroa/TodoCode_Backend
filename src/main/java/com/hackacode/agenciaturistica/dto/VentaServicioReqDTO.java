@@ -2,7 +2,7 @@ package com.hackacode.agenciaturistica.dto;
 
 import com.hackacode.agenciaturistica.model.Servicio;
 
-public class VentaServicioDTO extends VentaAbstractDTO{
+public class VentaServicioReqDTO extends VentaAbstractDTO{
 
     private Servicio servicio;
 }

@@ -1,9 +1,6 @@
 package com.hackacode.agenciaturistica.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +23,8 @@ public class Servicio {
     private String destino_servicio;
     private LocalDateTime fechaServicio;
     private double costo_servicio;
+    @OneToOne
+    @JoinColumn (name = "tipo_servicio_id", referencedColumnName = "id_tipo")
     private TipoServicio tipoServicio;
 
 

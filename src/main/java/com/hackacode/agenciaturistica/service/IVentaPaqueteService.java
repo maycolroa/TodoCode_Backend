@@ -1,7 +1,6 @@
 package com.hackacode.agenciaturistica.service;
 
-import com.hackacode.agenciaturistica.dto.VentaPaqueteDTO;
-import com.hackacode.agenciaturistica.dto.VentaServicioDTO;
+import com.hackacode.agenciaturistica.dto.VentaPaqueteResDTO;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
 
@@ -9,11 +8,11 @@ import java.util.List;
 
 public interface IVentaPaqueteService {
 
-    public List<VentaPaqueteDTO> getAll();
+    public List<VentaPaqueteResDTO> getAll();
 
-    public VentaPaqueteDTO getVentaPaqueteById(Long id_venta) throws IdNotFoundException;
+    public VentaPaqueteResDTO getVentaPaqueteById(Long id_venta) throws IdNotFoundException;
 
-    public VentaPaqueteDTO saveVentaPaquete (VentaPaqueteDTO ventaPaqueteServicio) throws HibernateOperationException;
+    public VentaPaqueteResDTO saveVentaPaquete (VentaPaqueteResDTO ventaPaqueteServicio) throws HibernateOperationException;
 
 
 }

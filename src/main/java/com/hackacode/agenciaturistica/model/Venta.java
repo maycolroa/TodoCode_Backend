@@ -1,10 +1,7 @@
 package com.hackacode.agenciaturistica.model;
 
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +27,8 @@ public abstract class Venta {
 
     protected Empleado empleado;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn (name = "pago_venta_id", referencedColumnName = "id_pago")
     protected Pago pago;
 
 }

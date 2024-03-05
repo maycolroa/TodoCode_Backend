@@ -1,9 +1,9 @@
 package com.hackacode.agenciaturistica.repository;
 
-import com.hackacode.agenciaturistica.model.VentaPaquete;
+import com.hackacode.agenciaturistica.model.Pago;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface IVentaPaqueteRepository extends JpaRepository<VentaPaquete,Long> {
+public interface IPagoRepository extends JpaRepository <Pago,Long> {
 }

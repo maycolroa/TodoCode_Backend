@@ -1,19 +1,18 @@
 package com.hackacode.agenciaturistica.service;
 
-import com.hackacode.agenciaturistica.dto.TipoServicioDTO;
-import com.hackacode.agenciaturistica.dto.VentaPaqueteDTO;
+import com.hackacode.agenciaturistica.dto.VentaPaqueteResDTO;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
-import com.hackacode.agenciaturistica.model.TipoServicio;
 import com.hackacode.agenciaturistica.model.VentaPaquete;
 import com.hackacode.agenciaturistica.repository.IVentaPaqueteRepository;
-import com.hackacode.agenciaturistica.repository.IVentaServicioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class VentaPaqueteServiceImp implements IVentaPaqueteService{
 
     @Autowired
@@ -25,12 +24,12 @@ public class VentaPaqueteServiceImp implements IVentaPaqueteService{
 
 
     @Override
-    public List<VentaPaqueteDTO> getAll() {
+    public List<VentaPaqueteResDTO> getAll() {
         var ventaspaquetesBD = ventaPaqueteRepo.findAll();
-        var ventaspaquetesDTO = new ArrayList<VentaPaqueteDTO>();
+        var ventaspaquetesDTO = new ArrayList<VentaPaqueteResDTO>();
 
         for (VentaPaquete ventapaquete : ventaspaquetesBD){
-            ventaspaquetesDTO.add(modelMapper.map(ventapaquete, VentaPaqueteDTO.class));
+            ventaspaquetesDTO.add(modelMapper.map(ventapaquete, VentaPaqueteResDTO.class));
 
         }
 
@@ -39,17 +38,17 @@ public class VentaPaqueteServiceImp implements IVentaPaqueteService{
     }
 
     @Override
-    public VentaPaqueteDTO getVentaPaqueteById(Long id_ventapaquete) throws IdNotFoundException{
+    public VentaPaqueteResDTO getVentaPaqueteById(Long id_ventapaquete) throws IdNotFoundException{
         VentaPaquete ventaPaquete= ventaPaqueteRepo.findById(id_ventapaquete).orElseThrow(() -> new IdNotFoundException("El id " + id_ventapaquete + " no se encuentra registrado"));
 
-        var ventaPaqueteDto = modelMapper.map(ventaPaquete, VentaPaqueteDTO.class);
+        var ventaPaqueteDto = modelMapper.map(ventaPaquete, VentaPaqueteResDTO.class);
 
 
         return ventaPaqueteDto;
     }
 
     @Override
-    public VentaPaqueteDTO saveVentaPaquete (VentaPaqueteDTO ventaPaqueteServicio) throws HibernateOperationException {
+    public VentaPaqueteResDTO saveVentaPaquete (VentaPaqueteResDTO ventaPaqueteServicio) throws HibernateOperationException {
         var ventapaquetesave = modelMapper.map(ventaPaqueteServicio, VentaPaquete.class);
 
         try{
@@ -59,7 +58,7 @@ public class VentaPaqueteServiceImp implements IVentaPaqueteService{
         }
 
 
-        var ventaPaqueteDtoSave = modelMapper.map(ventapaquetesave , VentaPaqueteDTO.class);
+        var ventaPaqueteDtoSave = modelMapper.map(ventapaquetesave , VentaPaqueteResDTO.class);
 
         return ventaPaqueteDtoSave;
     }
