@@ -75,7 +75,7 @@ public class VentaServicioServiceImp implements IVentaServicioSevice{
             var servicioDto = servicioServ.getServicioById(ventaServicio.getServicio().getCodigo_servicio() ) ;
             var servicio = modelMapper.map(servicioDto, Servicio.class);
 
-            var montoTotal = servicio.getCostoServicio() ;
+            var montoTotal = servicio.getCosto() ;
 
             logger.info("Se le pide el costo al servicio :", servicio);
 

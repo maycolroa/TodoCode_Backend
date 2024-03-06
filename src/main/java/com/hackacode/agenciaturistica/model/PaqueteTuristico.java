@@ -24,4 +24,10 @@ public class PaqueteTuristico {
     private double costo_paquete;
     private double descuento;
     private List<Servicio> servicios;
+
+
+    public double getCosto(){
+        return this.costo_paquete;
+    }
+
 }
