@@ -39,7 +39,7 @@ public class EmpleadoController {
     }
 
     @DeleteMapping("/{idEmpleado}")
-    public void deleteById(@PathVariable Long idEmpleado) throws IdNotFoundException {
+    public void deleteEmpleadoById(@PathVariable Long idEmpleado) throws IdNotFoundException {
         this.empleadoService.deleteEmpleadoById(idEmpleado);
     }
 }

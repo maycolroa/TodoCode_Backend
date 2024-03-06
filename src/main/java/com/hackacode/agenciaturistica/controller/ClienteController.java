@@ -38,7 +38,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{idCliente}")
-    public void deleteById(@PathVariable Long idCliente) throws IdNotFoundException {
+    public void deleteClienteById(@PathVariable Long idCliente) throws IdNotFoundException {
         this.clienteService.deleteClienteById(idCliente);
     }
 }
