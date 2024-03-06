@@ -32,6 +32,11 @@ public class ClienteController {
         return clienteService.saveCliente(clienteDTO);
     }
 
+    @PutMapping("/{idCliente}")
+    public ClienteDTO editCliente(@PathVariable Long idCliente, @RequestBody ClienteDTO clienteDTO) throws HibernateOperationException, IdNotFoundException {
+        return clienteService.editCliente(idCliente, clienteDTO);
+    }
+
     @DeleteMapping("/{idCliente}")
     public void deleteById(@PathVariable Long idCliente) throws IdNotFoundException {
         this.clienteService.deleteClienteById(idCliente);

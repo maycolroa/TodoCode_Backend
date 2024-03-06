@@ -13,6 +13,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 public class Empleado extends Cliente {
+
     private String cargo;
     private double sueldo;
+
 }

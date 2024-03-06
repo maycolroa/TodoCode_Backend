@@ -55,9 +55,26 @@ public class ClienteService implements IClienteService {
             throw new HibernateOperationException("Error con hibertane: " + e.getMessage());
         }
 
-        ClienteDTO clienteDtoSave = modelMapper.map(cliente, ClienteDTO.class);
+        ClienteDTO clienteDTOSave = modelMapper.map(cliente, ClienteDTO.class);
 
-        return clienteDtoSave;
+        return clienteDTOSave;
+    }
+
+    public ClienteDTO editCliente(Long idCliente, ClienteDTO clienteDTORecivido) throws IdNotFoundException, HibernateOperationException {
+        ClienteDTO clienteDTO = this.getClienteById(idCliente);
+
+        clienteDTO.setNombre(clienteDTORecivido.getNombre());
+        clienteDTO.setApellido(clienteDTORecivido.getApellido());
+        clienteDTO.setDireccion(clienteDTORecivido.getDireccion());
+        clienteDTO.setDni(clienteDTORecivido.getDni());
+        clienteDTO.setFecha_nac(clienteDTORecivido.getFecha_nac());
+        clienteDTO.setNacionalidad(clienteDTORecivido.getNacionalidad());
+        clienteDTO.setCelular(clienteDTORecivido.getCelular());
+        clienteDTO.setEmail(clienteDTORecivido.getEmail());
+
+        this.saveCliente(clienteDTO);
+
+        return clienteDTO;
     }
 
     @Override

@@ -33,6 +33,11 @@ public class EmpleadoController {
         return empleadoService.saveEmpleado(empleadoDTO);
     }
 
+    @PutMapping("/{idEmpleado}")
+    public EmpleadoDTO editEmpleado(@PathVariable Long idEmpleado, @RequestBody EmpleadoDTO empleadoDTO) throws HibernateOperationException, IdNotFoundException {
+        return empleadoService.editEmpleado(idEmpleado, empleadoDTO);
+    }
+
     @DeleteMapping("/{idEmpleado}")
     public void deleteById(@PathVariable Long idEmpleado) throws IdNotFoundException {
         this.empleadoService.deleteEmpleadoById(idEmpleado);
