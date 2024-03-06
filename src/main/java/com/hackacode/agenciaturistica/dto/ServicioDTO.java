@@ -1,17 +1,14 @@
 package com.hackacode.agenciaturistica.dto;
 
 import com.hackacode.agenciaturistica.model.TipoServicio;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 public class ServicioDTO {
 
     private String nombre;
