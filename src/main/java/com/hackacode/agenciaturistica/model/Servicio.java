@@ -28,4 +28,8 @@ public class Servicio {
     private TipoServicio tipoServicio;
 
 
+    public double getCostoServicio(){
+        return this.costo_servicio;
+    }
+
 }

@@ -72,11 +72,19 @@ public class VentaServicioServiceImp implements IVentaServicioSevice{
         try{
 
 
-            Servicio servicio = new Servicio();
+            var servicioDto = servicioServ.getServicioById(ventaServicio.getServicio().getCodigo_servicio() ) ;
+            var servicio = modelMapper.map(servicioDto, Servicio.class);
 
-            var montoTotal = servicio.getCosto_servicio();
-            Pago pago = new Pago(444L,montoTotal,ventaServicio.getTipoPago(), LocalDateTime.now() );
+            var montoTotal = servicio.getCostoServicio() ;
 
+            logger.info("Se le pide el costo al servicio :", servicio);
+
+
+
+            Pago pago = new Pago();
+            pago.setMontoTotal(montoTotal);
+            pago.setTipoPago(ventaServicio.getTipoPago());
+            pago.setFechaPago(LocalDateTime.now());
             logger.info("Se crea el pago correspondiente a la venta :", pago);
 
 
@@ -85,8 +93,8 @@ public class VentaServicioServiceImp implements IVentaServicioSevice{
             ventaSer.setPago(pago);
             ventaSer.setCliente(ventaServicio.getCliente());
             ventaSer.setEmpleado(ventaServicio.getEmpleado() );
-
             var ventaserviciosave = ventaServicioRepo.save(ventaSer);
+            logger.info("Venta, was saved:", ventaserviciosave );
 
 
 
