@@ -6,6 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -22,7 +23,7 @@ public class Cliente {
     private String apellido;
     private String direccion;
     private String dni;
-    private Date fecha_nac;
+    private LocalDate fecha_nac;
     private String nacionalidad;
     private String celular;
     private String email;
