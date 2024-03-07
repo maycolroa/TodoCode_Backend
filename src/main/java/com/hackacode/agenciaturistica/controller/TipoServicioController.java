@@ -18,6 +18,8 @@ public class TipoServicioController {
     @Autowired
     private ITipoServicio tipoServ;
 
+    @Operation(summary = "Devuelve los tipos de de servicio",
+            description = "Devvuelve una lista con todos los tipos de servicio que existen")
 
     @GetMapping("/all")
     public List<TipoServicioDTO> getAll(){
@@ -25,16 +27,22 @@ public class TipoServicioController {
         return tipoServ.getAll();
     }
 
+    @Operation(summary = "Devuelve un tipo de servicio",
+            description = "Devuelve un tipo de servicio por id")
 
-    @GetMapping("/{id_problem}")
-    public TipoServicioDTO getProblemById(@PathVariable Long id_tipo)throws IdNotFoundException {
+
+
+    @GetMapping("/{id_tipo}")
+    public TipoServicioDTO getTipoServicioById(@PathVariable Long id_tipo)throws IdNotFoundException {
 
         return tipoServ.getTipoServicioById(id_tipo);
     }
 
+    @Operation(summary = "Guarda un tipo de servicio",
+            description = "Permite guardar un nuevo  tipo de servicio")
 
     @PostMapping("/save")
-    public TipoServicioDTO saveProblem(@Valid @RequestBody TipoServicioDTO tipoSericio) throws HibernateOperationException {
+    public TipoServicioDTO saveTipoServicio(@Valid @RequestBody TipoServicioDTO tipoSericio) throws HibernateOperationException {
 
         return tipoServ.saveTipoSercicio(tipoSericio);
     }

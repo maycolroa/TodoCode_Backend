@@ -1,9 +1,6 @@
 package com.hackacode.agenciaturistica.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,6 +21,9 @@ public class Pago {
     private Long Id_pago;
 
     private double montoTotal;
+
+    @OneToOne
+    @JoinColumn(name = "tippo_pago_id", referencedColumnName = "Id")
 
     private TipoPago tipoPago;
 
