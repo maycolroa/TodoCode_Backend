@@ -30,7 +30,7 @@ public class VentaPaqueteServiceImp implements IVentaPaqueteService{
 
 
     @Autowired
-    private IPaqueteService  paqueteServ;
+    private IPaqueteTuristicoService paqueteServ;
 
 
 
