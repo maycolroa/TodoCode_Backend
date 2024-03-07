@@ -85,22 +85,12 @@ public class VentaServicioServiceImp implements IVentaServicioSevice{
 
 
 
-            Object entidadPago = myFactoryServ.crearEntidad("com.hackacode.agenciaturistica.model.Pago");
-            Pago pago = (Pago) entidadPago;
-
-
-            pago.setMontoTotal(montoTotal);
-            pago.setTipoPago(ventaServicio.getTipoPago());
-            pago.setFechaPago(LocalDateTime.now());
-            logger.info("Se crea el pago correspondiente a la venta :", pago);
-
 
             Object entidadVentaServicio = myFactoryServ.crearEntidad("com.hackacode.agenciaturistica.model.VentaServicio");
             VentaServicio ventaSer= (VentaServicio) entidadVentaServicio;
 
 
             ventaSer.setFecha_venta(ventaServicio.getFecha_venta());
-            ventaSer.setPago(pago);
             ventaSer.setCliente(ventaServicio.getCliente());
             ventaSer.setEmpleado(ventaServicio.getEmpleado() );
             var ventaserviciosave = ventaServicioRepo.save(ventaSer);

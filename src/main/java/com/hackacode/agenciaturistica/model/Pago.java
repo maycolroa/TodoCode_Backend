@@ -22,12 +22,15 @@ public class Pago {
 
     private double montoTotal;
 
-    @OneToOne
-    @JoinColumn(name = "tippo_pago_id", referencedColumnName = "Id")
-
+    @ManyToOne
     private TipoPago tipoPago;
 
     private LocalDateTime fechaPago;
+
+    @OneToOne
+    @JoinColumn (name = "pago_venta_num", referencedColumnName = "num_venta")
+
+    private Venta venta;
 
 
 }

@@ -22,6 +22,6 @@ public class VentaAbstractDTO {
 
     protected Empleado empleado;
 
-    protected TipoPago tipoPago;
+
 
 }

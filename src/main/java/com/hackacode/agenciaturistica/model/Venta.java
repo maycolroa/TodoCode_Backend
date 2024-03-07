@@ -27,8 +27,5 @@ public abstract class Venta {
 
     protected Empleado empleado;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn (name = "pago_venta_id", referencedColumnName = "id_pago")
-    protected Pago pago;
 
 }

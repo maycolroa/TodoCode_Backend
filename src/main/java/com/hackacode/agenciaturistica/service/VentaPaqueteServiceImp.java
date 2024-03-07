@@ -73,17 +73,6 @@ public class VentaPaqueteServiceImp implements IVentaPaqueteService{
             var paqueteDto = paqueteServ.getPaqueteById(ventaPaqueteServicio.getPaquete() .getCodigo_paquete());
             var paquete = modelMapper.map(paqueteDto, PaqueteTuristico.class);
 
-            var montoTotal = paquete.getCosto() ;
-
-            logger.info("Se le pide el costo al servicio :", paquete);
-
-
-            Object entidadPago = myFactoryServ.crearEntidad("com.hackacode.agenciaturistica.model.Pago");
-            Pago pago = (Pago) entidadPago;
-
-            pago.setMontoTotal(montoTotal);
-            pago.setTipoPago(ventaPaqueteServicio.getTipoPago());
-            pago.setFechaPago(LocalDateTime.now());
             logger.info("Se crea el pago correspondiente a la venta :", pago);
 
 
@@ -93,18 +82,10 @@ public class VentaPaqueteServiceImp implements IVentaPaqueteService{
 
 
             ventaPaquete.setFecha_venta(ventaPaqueteServicio.getFecha_venta());
-            ventaPaquete.setPago(pago);
             ventaPaquete.setCliente(ventaPaqueteServicio.getCliente());
             ventaPaquete.setEmpleado(ventaPaqueteServicio.getEmpleado() );
             var ventaserviciosave = ventaPaqueteRepo.save(ventaPaquete);
             logger.info("Venta, was saved:", ventaserviciosave );
-
-
-
-
-
-
-
 
 
             ventapaquetesave = ventaPaqueteRepo.save(ventapaquetesave);
