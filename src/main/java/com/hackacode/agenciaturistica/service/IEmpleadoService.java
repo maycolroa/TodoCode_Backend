@@ -14,5 +14,7 @@ public interface IEmpleadoService {
 
     public EmpleadoDTO saveEmpleado(EmpleadoDTO empleado) throws HibernateOperationException;
 
+    public EmpleadoDTO editEmpleado(Long idEmpleado, EmpleadoDTO empleadoDTORecivido) throws IdNotFoundException, HibernateOperationException;
+
     public void deleteEmpleadoById(Long idEmpleado) throws IdNotFoundException;
 }
