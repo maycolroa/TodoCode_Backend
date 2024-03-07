@@ -15,5 +15,7 @@ public interface IPaqueteTuristicoService {
 
     public PaqueteTuristicoDTO savePaqueteTuristico(PaqueteTuristicoDTO paqueteTuristicoDTO) throws HibernateOperationException;
 
+    public PaqueteTuristicoDTO editPaqueteTuristico(Long codigoPaquete, PaqueteTuristicoDTO paqueteTuristicoDTORecivido) throws IdNotFoundException, HibernateOperationException;
+
     public void deletePaqueteTuristicoById(Long codigoPaquete) throws IdNotFoundException;
 }

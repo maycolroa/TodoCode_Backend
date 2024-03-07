@@ -14,5 +14,7 @@ public interface IClienteService {
 
     public ClienteDTO saveCliente(ClienteDTO cliente) throws HibernateOperationException;
 
+    public ClienteDTO editCliente(Long idCliente, ClienteDTO cliente) throws IdNotFoundException, HibernateOperationException;
+
     public void deleteClienteById(Long idCliente) throws IdNotFoundException;
 }
