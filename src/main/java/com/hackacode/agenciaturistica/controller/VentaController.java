@@ -8,6 +8,7 @@ import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
 import com.hackacode.agenciaturistica.service.IVentaPaqueteService;
 import com.hackacode.agenciaturistica.service.IVentaServicioSevice;
+import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +26,16 @@ public class VentaController {
     private IVentaPaqueteService  ventaPaqueteServ;
 
 
-
+    @Operation(summary = "Devuelve todas ventas de servicios",
+              description = "Devuelve un listado de todas las ventas de servicios que se han realizado")
     @GetMapping("/allservicios")
     public List<VentaServicioResDTO> getAllSericios(){
 
         return ventaServ.getAll();
     }
 
+    @Operation(summary = "Devuelve todas ventas de los paquetes",
+            description = "Devuelve un listado de todas las ventas de paquetes turisticos que se han realizado")
 
     @GetMapping("/allpaquetes")
     public List<VentaPaqueteResDTO> getAllPaquetes(){
@@ -40,6 +44,8 @@ public class VentaController {
     }
 
 
+    @Operation(summary = "Devuelve una una venta de un servicio en particular",
+            description = "Devvuelve una venta de un servicio, que se corresponde con el código de servicio que se le provee")
 
     @GetMapping("/{id_venta_servicio}")
     public VentaServicioResDTO getVentaServidioById(@PathVariable Long id_venta_servicio)throws IdNotFoundException {
@@ -48,6 +54,8 @@ public class VentaController {
     }
 
 
+    @Operation(summary = "Devuelve una una venta de un paquete en particular",
+            description = "Devvuelve una venta de un paquete, que se corresponde con el código de paquete que se le provee")
 
     @GetMapping("/{id_venta_paquete}")
     public VentaPaqueteResDTO getProblemById(@PathVariable Long id_venta_paquete)throws IdNotFoundException {
@@ -57,7 +65,7 @@ public class VentaController {
 
 
 
-    @PostMapping("/saveservicio")
+    @PostMapping("/saveventaservicio")
     public VentaServicioResDTO saveVentaServicio(@Valid @RequestBody VentaServicioReqDTO ventaServicioDto) throws HibernateOperationException {
 
         return ventaServ.saveVentaServicio(ventaServicioDto);

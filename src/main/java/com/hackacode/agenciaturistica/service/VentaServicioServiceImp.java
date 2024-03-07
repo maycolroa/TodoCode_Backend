@@ -6,8 +6,10 @@ import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
 import com.hackacode.agenciaturistica.model.Pago;
 import com.hackacode.agenciaturistica.model.Servicio;
+import com.hackacode.agenciaturistica.model.VentaPaquete;
 import com.hackacode.agenciaturistica.model.VentaServicio;
 import com.hackacode.agenciaturistica.repository.IVentaServicioRepository;
+import com.hackacode.agenciaturistica.util.IMyFactory;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +24,8 @@ import java.util.List;
 public class VentaServicioServiceImp implements IVentaServicioSevice{
 
     private static final Logger logger = LoggerFactory.getLogger(VentaServicioServiceImp.class);
+    @Autowired
+    private IMyFactory myFactoryServ;
 
 
     @Autowired
@@ -81,14 +85,20 @@ public class VentaServicioServiceImp implements IVentaServicioSevice{
 
 
 
-            Pago pago = new Pago();
+            Object entidadPago = myFactoryServ.crearEntidad("com.hackacode.agenciaturistica.model.Pago");
+            Pago pago = (Pago) entidadPago;
+
+
             pago.setMontoTotal(montoTotal);
             pago.setTipoPago(ventaServicio.getTipoPago());
             pago.setFechaPago(LocalDateTime.now());
             logger.info("Se crea el pago correspondiente a la venta :", pago);
 
 
-            VentaServicio ventaSer = new VentaServicio();
+            Object entidadVentaServicio = myFactoryServ.crearEntidad("com.hackacode.agenciaturistica.model.VentaServicio");
+            VentaServicio ventaSer= (VentaServicio) entidadVentaServicio;
+
+
             ventaSer.setFecha_venta(ventaServicio.getFecha_venta());
             ventaSer.setPago(pago);
             ventaSer.setCliente(ventaServicio.getCliente());
