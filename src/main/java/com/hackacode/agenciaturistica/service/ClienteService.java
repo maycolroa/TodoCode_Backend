@@ -21,6 +21,10 @@ public class ClienteService implements IClienteService {
     @Autowired
     private ModelMapper modelMapper;
 
+    public ClienteService() {
+        this.modelMapper = new ModelMapper();
+    }
+
     @Override
     public List<ClienteDTO>getAllClientes() {
         List<Cliente> clientes = clienteRepository.findAll();

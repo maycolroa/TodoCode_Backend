@@ -70,10 +70,11 @@ public class VentaPaqueteServiceImp implements IVentaPaqueteService{
         try{
 
 
-            var paqueteDto = paqueteServ.getPaqueteById(ventaPaqueteServicio.getPaquete() .getCodigo_paquete());
+            var paqueteDto = paqueteServ.getPaqueteTuristicoById(ventaPaqueteServicio.getPaquete() .getCodigo_paquete());
             var paquete = modelMapper.map(paqueteDto, PaqueteTuristico.class);
 
-            logger.info("Se crea el pago correspondiente a la venta :", pago);
+            //cual es el pago?
+            //logger.info("Se crea el pago correspondiente a la venta :", pago);
 
 
 
