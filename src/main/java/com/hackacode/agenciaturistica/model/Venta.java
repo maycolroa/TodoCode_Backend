@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
+@Entity
 public abstract class Venta {
 
     @Id
@@ -23,8 +24,10 @@ public abstract class Venta {
 
     protected LocalDateTime fecha_venta;
 
+    @ManyToOne
     protected Cliente cliente;
 
+    @ManyToOne
     protected Empleado empleado;
 
 

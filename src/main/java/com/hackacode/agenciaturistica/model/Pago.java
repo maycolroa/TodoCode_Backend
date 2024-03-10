@@ -29,7 +29,6 @@ public class Pago {
 
     @OneToOne
     @JoinColumn (name = "pago_venta_num", referencedColumnName = "num_venta")
-
     private Venta venta;
 
 
