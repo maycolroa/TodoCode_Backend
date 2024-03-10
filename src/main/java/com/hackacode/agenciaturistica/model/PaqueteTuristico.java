@@ -17,7 +17,7 @@ public class PaqueteTuristico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long codigo_paquete ;
+    private Long codigo_paquete;
     private double costo_paquete;
     private double descuento;
 

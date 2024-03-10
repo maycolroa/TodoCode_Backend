@@ -5,16 +5,20 @@ import com.hackacode.agenciaturistica.dto.PagoResDTO;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
 import com.hackacode.agenciaturistica.model.Pago;
+import com.hackacode.agenciaturistica.model.VentaPaquete;
+import com.hackacode.agenciaturistica.model.VentaServicio;
 import com.hackacode.agenciaturistica.repository.IPagoRepository;
 import com.hackacode.agenciaturistica.repository.IVentaServicioRepository;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class PagoServiceImp implements IPagoService{
 
     @Autowired
@@ -72,6 +76,10 @@ public class PagoServiceImp implements IPagoService{
 
             pagosave.setMontoTotal(ventaServ.getServicio().getCosto());
 
+
+            pagosave.setVenta(modelMapper.map(ventaServ, VentaServicio.class));
+
+
             pagosave = pagoRepo.save(pagosave);
 
         } catch (Exception ex) {
@@ -98,6 +106,8 @@ public class PagoServiceImp implements IPagoService{
 
             pagosave.setMontoTotal(ventaServ.getPaquete().getCosto());
 
+
+            pagosave.setVenta(modelMapper.map(ventaServ, VentaPaquete.class));
 
             pagosave = pagoRepo.save(pagosave);
 

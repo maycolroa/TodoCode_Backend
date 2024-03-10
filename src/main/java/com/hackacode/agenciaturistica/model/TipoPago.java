@@ -17,7 +17,7 @@ import lombok.Setter;
 public  class TipoPago {
 
     @jakarta.persistence.Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     protected Long Id;
     protected String nombre;
 

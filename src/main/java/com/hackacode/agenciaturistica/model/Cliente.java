@@ -1,9 +1,6 @@
 package com.hackacode.agenciaturistica.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
@@ -14,10 +11,11 @@ import java.util.Date;
 @NoArgsConstructor
 @ToString
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Cliente {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long Id;
     private String nombre;
     private String apellido;

@@ -17,7 +17,7 @@ public class Pago {
 
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long Id_pago;
 
     private double montoTotal;

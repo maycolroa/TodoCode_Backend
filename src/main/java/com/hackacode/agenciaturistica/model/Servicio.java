@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Entity
 public class Servicio {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long codigo_servicio ;
     private String nombre;
     private String descripcion_breve;
