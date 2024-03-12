@@ -30,14 +30,14 @@ public class ServicioController {
 
 
     @GetMapping("/{id_servicio}")
-    public ServicioDTO getProblemById(@PathVariable Long id_servicio)throws IdNotFoundException {
+    public ServicioDTO getServicioById(@PathVariable Long id_servicio)throws IdNotFoundException {
 
         return servicioServ.getServicioById(id_servicio);
     }
 
 
     @PostMapping("/save")
-    public ServicioDTO saveProblem(@Valid @RequestBody ServicioDTO servicio) throws HibernateOperationException {
+    public ServicioDTO saveServicio(@Valid @RequestBody ServicioDTO servicio) throws HibernateOperationException {
 
         return servicioServ.saveServicio(servicio);
     }
