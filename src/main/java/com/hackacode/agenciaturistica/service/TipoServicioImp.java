@@ -1,6 +1,7 @@
 package com.hackacode.agenciaturistica.service;
 
 
+import com.hackacode.agenciaturistica.dto.ClienteDTO;
 import com.hackacode.agenciaturistica.dto.TipoServicioDTO;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
@@ -63,5 +64,42 @@ public class TipoServicioImp implements ITipoServicio {
         var tiposervicioDtoSave = modelMapper.map(tiposerviciosave, TipoServicioDTO.class);
 
         return tiposervicioDtoSave;
+    }
+
+    @Override
+    public TipoServicioDTO editTipoServicio(Long idTipoServicio, TipoServicioDTO tipoServicioDTONew) throws HibernateOperationException, IdNotFoundException {
+
+        TipoServicioDTO tipoServiciBD = this.getTipoServicioById(idTipoServicio) ;
+
+        // aca tendria que varidar que no exista.
+
+
+        tipoServiciBD.setName(tipoServicioDTONew.getName()) ;
+        tipoServiciBD.setDescripcion(tipoServicioDTONew.getDescripcion()) ;
+
+        var tiposerviciosave = modelMapper.map(tipoServiciBD, TipoServicio.class);
+        tiposerviciosave.setId_tipo(idTipoServicio);
+
+        try{
+            tiposerviciosave = tipoServicioRepo.save(tiposerviciosave);
+
+
+        } catch (Exception ex) {
+            throw new HibernateOperationException ("Error con hibertane: " + ex.getMessage());
+        }
+
+        var tiposerviciosaveDto= modelMapper.map( tiposerviciosave, TipoServicioDTO.class);
+
+        return tiposerviciosaveDto;
+    }
+
+    @Override
+    public void deleteTipoServicioById(Long idTipoServicio) throws IdNotFoundException {
+
+        try {
+            this.tipoServicioRepo.deleteById(idTipoServicio);
+        } catch (Exception e) {
+            throw new IdNotFoundException("El id " + idTipoServicio + " no existe");
+        }
     }
 }

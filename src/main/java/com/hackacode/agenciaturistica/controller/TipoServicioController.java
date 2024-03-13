@@ -1,5 +1,6 @@
 package com.hackacode.agenciaturistica.controller;
 
+import com.hackacode.agenciaturistica.dto.ClienteDTO;
 import com.hackacode.agenciaturistica.dto.TipoServicioDTO;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
@@ -45,6 +46,19 @@ public class TipoServicioController {
     public TipoServicioDTO saveTipoServicio(@Valid @RequestBody TipoServicioDTO tipoSericio) throws HibernateOperationException {
 
         return tipoServ.saveTipoSercicio(tipoSericio);
+    }
+
+
+
+
+    @PutMapping("/{id_tipo}")
+    public TipoServicioDTO editTipoServicio(@PathVariable Long id_tipo, @RequestBody TipoServicioDTO tipoServicioDTO) throws HibernateOperationException, IdNotFoundException {
+        return tipoServ.editTipoServicio(id_tipo, tipoServicioDTO);
+    }
+
+    @DeleteMapping("/{id_tipo}")
+    public void deleteTipoServicioById(@PathVariable Long id_tipo) throws IdNotFoundException {
+        this.tipoServ.deleteTipoServicioById(id_tipo);
     }
 
 }
