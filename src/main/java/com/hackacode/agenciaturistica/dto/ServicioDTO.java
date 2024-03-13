@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @ToString
 public class ServicioDTO {
 
+    private Long codigo_servicio;
     private String nombre;
     private String descripcion_breve;
     private String destino_servicio;
