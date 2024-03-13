@@ -16,7 +16,7 @@ import java.util.List;
 public class PaqueteTuristico {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long codigo_paquete;
     private double costo_paquete;
     private double descuento;

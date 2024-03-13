@@ -1,9 +1,11 @@
 package com.hackacode.agenciaturistica.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -18,10 +20,12 @@ public class Servicio {
     private String nombre;
     private String descripcion_breve;
     private String destino_servicio;
-    private LocalDateTime fechaServicio;
+
+    @Temporal(TemporalType.DATE)
+    private LocalDate fechaServicio;
     private double costo_servicio;
     @OneToOne
-    @JoinColumn (name = "tipo_servicio_id", referencedColumnName = "id_tipo")
+    @JoinColumn (name = "tipo_servicio_id", referencedColumnName = "Id_tipo")
     private TipoServicio tipoServicio;
 
 
