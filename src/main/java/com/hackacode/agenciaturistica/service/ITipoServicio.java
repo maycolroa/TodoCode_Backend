@@ -16,7 +16,7 @@ public interface ITipoServicio {
 
     public TipoServicioDTO getTipoServicioById(Long id_tipo) throws IdNotFoundException;
 
-    public TipoServicioDTO saveTipoSercicio (TipoServicioDTO tipoServicio) throws HibernateOperationException;
+    public TipoServicioDTO saveTipoServicio(TipoServicioDTO tipoServicio) throws HibernateOperationException;
 
 
     public TipoServicioDTO editTipoServicio(@PathVariable Long idTipoServicio, @RequestBody TipoServicioDTO tipoServicioDTO) throws HibernateOperationException, IdNotFoundException;

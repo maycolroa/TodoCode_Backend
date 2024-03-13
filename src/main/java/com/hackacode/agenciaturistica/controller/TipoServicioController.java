@@ -4,7 +4,7 @@ import com.hackacode.agenciaturistica.dto.ClienteDTO;
 import com.hackacode.agenciaturistica.dto.TipoServicioDTO;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
-import com.hackacode.agenciaturistica.service.ITipoServicio;
+import com.hackacode.agenciaturistica.service.TipoServicioImp;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ import java.util.List;
 public class TipoServicioController {
 
     @Autowired
-    private ITipoServicio tipoServ;
+    private TipoServicioImp tipoServ;
 
     @Operation(summary = "Devuelve los tipos de de servicio",
             description = "Devvuelve una lista con todos los tipos de servicio que existen")
@@ -43,9 +43,9 @@ public class TipoServicioController {
             description = "Permite guardar un nuevo  tipo de servicio")
 
     @PostMapping("/save")
-    public TipoServicioDTO saveTipoServicio(@Valid @RequestBody TipoServicioDTO tipoSericio) throws HibernateOperationException {
+    public TipoServicioDTO saveTipoServicio(@Valid @RequestBody TipoServicioDTO tipoServicio) throws HibernateOperationException {
 
-        return tipoServ.saveTipoSercicio(tipoSericio);
+        return tipoServ.saveTipoServicio(tipoServicio);
     }
 
 

@@ -50,7 +50,7 @@ public class TipoServicioImp implements ITipoServicio {
     }
 
     @Override
-    public TipoServicioDTO saveTipoSercicio (TipoServicioDTO tipoServicio) throws HibernateOperationException {
+    public TipoServicioDTO saveTipoServicio(TipoServicioDTO tipoServicio) throws HibernateOperationException {
 
         var tiposerviciosave = modelMapper.map(tipoServicio, TipoServicio.class);
 
