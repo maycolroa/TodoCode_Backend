@@ -20,6 +20,8 @@ public class Cliente {
     private String nombre;
     private String apellido;
     private String direccion;
+
+    @Column(name = "dni", nullable = false, unique = true)
     private String dni;
     private LocalDate fecha_nac;
     private String nacionalidad;
