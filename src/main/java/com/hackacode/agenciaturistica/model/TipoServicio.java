@@ -18,7 +18,7 @@ public class TipoServicio {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long Id_tipo;
+    private Long id_tipo;
     private String name;
     private String descripcion;
 

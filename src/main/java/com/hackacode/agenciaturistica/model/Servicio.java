@@ -24,8 +24,8 @@ public class Servicio {
     @Temporal(TemporalType.DATE)
     private LocalDate fechaServicio;
     private double costo_servicio;
-    @OneToOne
-    @JoinColumn (name = "tipo_servicio_id", referencedColumnName = "Id_tipo")
+    @ManyToOne
+    @JoinColumn (name = "tipo_servicio_id", referencedColumnName = "id_tipo")
     private TipoServicio tipoServicio;
 
 
