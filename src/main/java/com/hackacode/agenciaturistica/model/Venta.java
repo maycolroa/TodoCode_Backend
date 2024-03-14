@@ -24,10 +24,10 @@ public abstract class Venta {
 
     protected LocalDateTime fecha_venta;
 
-    @ManyToOne
+    @OneToOne
     protected Cliente cliente;
 
-    @ManyToOne
+    @OneToOne
     protected Empleado empleado;
 
 

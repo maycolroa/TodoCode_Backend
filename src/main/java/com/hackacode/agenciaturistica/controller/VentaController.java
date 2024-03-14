@@ -1,6 +1,7 @@
 package com.hackacode.agenciaturistica.controller;
 
 
+import com.hackacode.agenciaturistica.dto.VentaPaqueteReqDTO;
 import com.hackacode.agenciaturistica.dto.VentaPaqueteResDTO;
 import com.hackacode.agenciaturistica.dto.VentaServicioReqDTO;
 import com.hackacode.agenciaturistica.dto.VentaServicioResDTO;
@@ -72,7 +73,7 @@ public class VentaController {
     }
 
     @PostMapping("/savepaquete")
-    public VentaPaqueteResDTO saveVentaPaquete(@Valid @RequestBody VentaPaqueteResDTO ventaPaqueteDto) throws HibernateOperationException {
+    public VentaPaqueteResDTO saveVentaPaquete(@Valid @RequestBody VentaPaqueteReqDTO ventaPaqueteDto) throws HibernateOperationException {
 
         return ventaPaqueteServ.saveVentaPaquete(ventaPaqueteDto);
     }

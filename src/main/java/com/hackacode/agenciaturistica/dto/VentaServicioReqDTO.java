@@ -12,5 +12,5 @@ import lombok.Setter;
 @NoArgsConstructor
 public class VentaServicioReqDTO extends VentaAbstractDTO{
 
-    private Servicio servicio;
+    private ServicioDTO servicio;
 }

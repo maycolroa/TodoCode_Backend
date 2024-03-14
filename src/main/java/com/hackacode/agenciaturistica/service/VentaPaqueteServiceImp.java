@@ -1,5 +1,6 @@
 package com.hackacode.agenciaturistica.service;
 
+import com.hackacode.agenciaturistica.dto.VentaPaqueteReqDTO;
 import com.hackacode.agenciaturistica.dto.VentaPaqueteResDTO;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
@@ -64,17 +65,19 @@ public class VentaPaqueteServiceImp implements IVentaPaqueteService{
     }
 
     @Override
-    public VentaPaqueteResDTO saveVentaPaquete (VentaPaqueteResDTO ventaPaqueteServicio) throws HibernateOperationException {
+    public VentaPaqueteResDTO saveVentaPaquete (VentaPaqueteReqDTO ventaPaqueteServicio) throws HibernateOperationException {
         var ventapaquetesave = modelMapper.map(ventaPaqueteServicio, VentaPaquete.class);
 
         try{
 
 
-            var paqueteDto = paqueteServ.getPaqueteTuristicoById(ventaPaqueteServicio.getPaquete() .getCodigo_paquete());
-            var paquete = modelMapper.map(paqueteDto, PaqueteTuristico.class);
+           // var paqueteDto = paqueteServ.getPaqueteTuristicoById(ventaPaqueteServicio.getPaquete() .getCodigo_paquete());
+           // var paquete = modelMapper.map(paqueteDto, PaqueteTuristico.class);
 
             //cual es el pago?
             //logger.info("Se crea el pago correspondiente a la venta :", pago);
+
+            var paquete = paqueteServ.savePaqueteTuristico(ventaPaqueteServicio.getPaquete());
 
 
 
@@ -85,6 +88,8 @@ public class VentaPaqueteServiceImp implements IVentaPaqueteService{
             ventaPaquete.setFecha_venta(ventaPaqueteServicio.getFecha_venta());
             ventaPaquete.setCliente(ventaPaqueteServicio.getCliente());
             ventaPaquete.setEmpleado(ventaPaqueteServicio.getEmpleado() );
+            ventaPaquete.setPaquete(modelMapper.map(paquete, PaqueteTuristico.class));
+
             var ventaserviciosave = ventaPaqueteRepo.save(ventaPaquete);
             logger.info("Venta, was saved:", ventaserviciosave );
 

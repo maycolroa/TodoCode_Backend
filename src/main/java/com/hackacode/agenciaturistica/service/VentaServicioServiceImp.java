@@ -76,12 +76,8 @@ public class VentaServicioServiceImp implements IVentaServicioSevice{
         try{
 
 
-            var servicioDto = servicioServ.getServicioById(ventaServicio.getServicio().getCodigo_servicio() ) ;
-            var servicio = modelMapper.map(servicioDto, Servicio.class);
-
-            var montoTotal = servicio.getCosto() ;
-
-            logger.info("Se le pide el costo al servicio :", servicio);
+            var servicio = servicioServ.saveServicio(ventaServicio.getServicio());
+            logger.info("Se hace un save del servicio:", servicio);
 
 
 
@@ -93,8 +89,9 @@ public class VentaServicioServiceImp implements IVentaServicioSevice{
             ventaSer.setFecha_venta(ventaServicio.getFecha_venta());
             ventaSer.setCliente(ventaServicio.getCliente());
             ventaSer.setEmpleado(ventaServicio.getEmpleado() );
+            ventaSer.setServicio(modelMapper.map(servicio, Servicio.class));
             var ventaserviciosave = ventaServicioRepo.save(ventaSer);
-            logger.info("Venta, was saved:", ventaserviciosave );
+            logger.info("Se realiza una venta de un servicio:", ventaserviciosave );
 
 
 

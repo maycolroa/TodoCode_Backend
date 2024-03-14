@@ -19,4 +19,6 @@ public class PaqueteTuristicoDTO {
     private double descuento;
     private List<Servicio> servicios;
 
+
+
 }

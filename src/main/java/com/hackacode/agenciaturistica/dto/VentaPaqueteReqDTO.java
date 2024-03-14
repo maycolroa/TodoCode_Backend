@@ -12,6 +12,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class VentaPaqueteReqDTO extends VentaAbstractDTO {
 
-    private PaqueteTuristico paquete;
+    private PaqueteTuristicoDTO paquete;
 
 }
