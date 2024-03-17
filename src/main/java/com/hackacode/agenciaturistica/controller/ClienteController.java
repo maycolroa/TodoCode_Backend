@@ -1,6 +1,7 @@
 package com.hackacode.agenciaturistica.controller;
 
 import com.hackacode.agenciaturistica.dto.ClienteDTO;
+import com.hackacode.agenciaturistica.exception.ClienteExistException;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
 import com.hackacode.agenciaturistica.service.ClienteService;
@@ -28,12 +29,12 @@ public class ClienteController {
     }
 
     @PostMapping("/save")
-    public ClienteDTO saveCliente(@Valid @RequestBody ClienteDTO clienteDTO) throws HibernateOperationException {
+    public ClienteDTO saveCliente(@Valid @RequestBody ClienteDTO clienteDTO) throws HibernateOperationException ,ClienteExistException{
         return clienteService.saveCliente(clienteDTO);
     }
 
     @PutMapping("/{idCliente}")
-    public ClienteDTO editCliente(@PathVariable Long idCliente, @RequestBody ClienteDTO clienteDTO) throws HibernateOperationException, IdNotFoundException {
+    public ClienteDTO editCliente(@PathVariable Long idCliente, @RequestBody ClienteDTO clienteDTO) throws HibernateOperationException, IdNotFoundException, ClienteExistException {
         return clienteService.editCliente(idCliente, clienteDTO);
     }
 

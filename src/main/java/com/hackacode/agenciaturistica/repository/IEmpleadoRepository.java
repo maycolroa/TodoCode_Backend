@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IEmpleadoRepository extends JpaRepository<Empleado, Long> {
+
+    boolean existsByDni(String dni);
 }

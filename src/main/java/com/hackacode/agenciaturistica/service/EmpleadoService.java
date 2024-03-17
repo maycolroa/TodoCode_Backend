@@ -2,8 +2,10 @@ package com.hackacode.agenciaturistica.service;
 
 import com.hackacode.agenciaturistica.dto.ClienteDTO;
 import com.hackacode.agenciaturistica.dto.EmpleadoDTO;
+import com.hackacode.agenciaturistica.exception.EmpleadoExistException;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
+import com.hackacode.agenciaturistica.exception.TipoServicioExistException;
 import com.hackacode.agenciaturistica.model.Empleado;
 import com.hackacode.agenciaturistica.repository.IEmpleadoRepository;
 import org.modelmapper.ModelMapper;
@@ -47,8 +49,15 @@ public class EmpleadoService implements IEmpleadoService{
     }
 
     @Override
-    public EmpleadoDTO saveEmpleado(EmpleadoDTO empleadoDTO) throws HibernateOperationException {
+    public EmpleadoDTO saveEmpleado(EmpleadoDTO empleadoDTO) throws HibernateOperationException , EmpleadoExistException {
         Empleado empleado = modelMapper.map(empleadoDTO, Empleado.class);
+
+
+        if (empleadoRepository.existsByDni(empleadoDTO.getDni())) {
+            throw new  EmpleadoExistException("Ya se encuentra el empleado : " + empleadoDTO.getDni());
+        }
+
+
 
         try {
             empleado = empleadoRepository.save(empleado);
@@ -61,7 +70,13 @@ public class EmpleadoService implements IEmpleadoService{
         return empleadoDtoSave;
     }
 
-    public EmpleadoDTO editEmpleado(Long idEmpleado, EmpleadoDTO empleadoDTORecivido) throws IdNotFoundException, HibernateOperationException {
+    public EmpleadoDTO editEmpleado(Long idEmpleado, EmpleadoDTO empleadoDTORecivido) throws IdNotFoundException, HibernateOperationException,EmpleadoExistException {
+
+        if (empleadoRepository.existsByDni(empleadoDTORecivido.getDni())) {
+            throw new  EmpleadoExistException("Ya se encuentra el empleado : " + empleadoDTORecivido.getDni());
+        }
+
+
         EmpleadoDTO empleadoDTO = this.getEmpleadoById(idEmpleado);
 
         empleadoDTO.setNombre(empleadoDTORecivido.getNombre());

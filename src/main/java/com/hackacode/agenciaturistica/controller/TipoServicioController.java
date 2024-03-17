@@ -4,6 +4,7 @@ import com.hackacode.agenciaturistica.dto.ClienteDTO;
 import com.hackacode.agenciaturistica.dto.TipoServicioDTO;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
+import com.hackacode.agenciaturistica.exception.TipoServicioExistException;
 import com.hackacode.agenciaturistica.service.TipoServicioImp;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -43,7 +44,7 @@ public class TipoServicioController {
             description = "Permite guardar un nuevo  tipo de servicio")
 
     @PostMapping("/save")
-    public TipoServicioDTO saveTipoServicio(@Valid @RequestBody TipoServicioDTO tipoServicio) throws HibernateOperationException {
+    public TipoServicioDTO saveTipoServicio(@Valid @RequestBody TipoServicioDTO tipoServicio) throws HibernateOperationException, TipoServicioExistException {
 
         return tipoServ.saveTipoServicio(tipoServicio);
     }
@@ -52,7 +53,7 @@ public class TipoServicioController {
 
 
     @PutMapping("/{id_tipo}")
-    public TipoServicioDTO editTipoServicio(@PathVariable Long id_tipo, @RequestBody TipoServicioDTO tipoServicioDTO) throws HibernateOperationException, IdNotFoundException {
+    public TipoServicioDTO editTipoServicio(@PathVariable Long id_tipo, @RequestBody TipoServicioDTO tipoServicioDTO) throws HibernateOperationException, IdNotFoundException,TipoServicioExistException {
         return tipoServ.editTipoServicio(id_tipo, tipoServicioDTO);
     }
 

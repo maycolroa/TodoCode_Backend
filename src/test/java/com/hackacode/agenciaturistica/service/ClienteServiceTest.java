@@ -1,6 +1,7 @@
 package com.hackacode.agenciaturistica.service;
 
 import com.hackacode.agenciaturistica.dto.ClienteDTO;
+import com.hackacode.agenciaturistica.exception.ClienteExistException;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.model.Cliente;
 import com.hackacode.agenciaturistica.repository.IClienteRepository;
@@ -31,7 +32,7 @@ public class ClienteServiceTest {
     private ModelMapper modelMapper;
 
     @Test
-    public void test1() throws HibernateOperationException {
+    public void test1() throws HibernateOperationException, ClienteExistException {
         modelMapper = new ModelMapper();
 
         ClienteDTO cliente1 = new ClienteDTO(1L, "Juan", "Perez", "Encino #22",

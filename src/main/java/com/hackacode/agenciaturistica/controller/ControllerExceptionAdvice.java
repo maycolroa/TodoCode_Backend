@@ -1,8 +1,7 @@
 package com.hackacode.agenciaturistica.controller;
 
-import com.hackacode.agenciaturistica.exception.ErrorDetails;
-import com.hackacode.agenciaturistica.exception.HibernateOperationException;
-import com.hackacode.agenciaturistica.exception.IdNotFoundException;
+import com.hackacode.agenciaturistica.exception.*;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -49,6 +48,24 @@ public class ControllerExceptionAdvice {
         ex.getBindingResult()
                 .getFieldErrors()
                 .forEach(error -> errorDetails.put(error.getField(), error.getDefaultMessage()));
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDetails);
+    }
+
+
+
+    @Operation(
+            summary = "Devuelve excepciones generales",
+            description = "Captura y devuelve codigo de estado 400 con excepciones generales"
+    )
+    @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler({ClienteExistException.class, EmpleadoExistException.class, TipoServicioExistException.class,
+            ServicioExistException.class, TipoServicioExistException.class})
+    public ResponseEntity<ErrorDetails> badRequestExceptions(Exception ex) {
+
+        ErrorDetails errorDetails = new ErrorDetails();
+        errorDetails.setStatus(HttpStatus.BAD_REQUEST.value() + " BAD_REQUEST");
+        errorDetails.setMessage(ex.getMessage());
+
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorDetails);
     }
 }

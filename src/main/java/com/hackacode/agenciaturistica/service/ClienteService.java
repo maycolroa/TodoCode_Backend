@@ -1,8 +1,10 @@
 package com.hackacode.agenciaturistica.service;
 
 import com.hackacode.agenciaturistica.dto.ClienteDTO;
+import com.hackacode.agenciaturistica.exception.ClienteExistException;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
+import com.hackacode.agenciaturistica.exception.TipoServicioExistException;
 import com.hackacode.agenciaturistica.model.Cliente;
 import com.hackacode.agenciaturistica.repository.IClienteRepository;
 import org.modelmapper.ModelMapper;
@@ -50,8 +52,15 @@ public class ClienteService implements IClienteService {
     }
 
     @Override
-    public ClienteDTO saveCliente(ClienteDTO clienteDTO) throws HibernateOperationException {
+    public ClienteDTO saveCliente(ClienteDTO clienteDTO) throws HibernateOperationException,ClienteExistException {
         Cliente cliente = modelMapper.map(clienteDTO, Cliente.class);
+
+
+        if (clienteRepository.existsByDni(clienteDTO.getDni())) {
+            throw new ClienteExistException("Ya se encuentra el cliente : " + clienteDTO.getDni());
+        }
+
+
 
         try {
             cliente = clienteRepository.save(cliente);
@@ -64,7 +73,14 @@ public class ClienteService implements IClienteService {
         return clienteDTOSave;
     }
 
-    public ClienteDTO editCliente(Long idCliente, ClienteDTO clienteDTORecivido) throws IdNotFoundException, HibernateOperationException {
+    public ClienteDTO editCliente(Long idCliente, ClienteDTO clienteDTORecivido) throws IdNotFoundException, HibernateOperationException , ClienteExistException {
+
+        if (clienteRepository.existsByDni(clienteDTORecivido.getDni())) {
+            throw new ClienteExistException("Ya se encuentra el cliente : " + clienteDTORecivido.getDni());
+        }
+
+
+
         ClienteDTO clienteDTO = this.getClienteById(idCliente);
 
         clienteDTO.setNombre(clienteDTORecivido.getNombre());

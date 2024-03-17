@@ -2,6 +2,7 @@ package com.hackacode.agenciaturistica.controller;
 
 import com.hackacode.agenciaturistica.dto.ClienteDTO;
 import com.hackacode.agenciaturistica.dto.EmpleadoDTO;
+import com.hackacode.agenciaturistica.exception.EmpleadoExistException;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
 import com.hackacode.agenciaturistica.service.EmpleadoService;
@@ -29,12 +30,12 @@ public class EmpleadoController {
     }
 
     @PostMapping("/save")
-    public EmpleadoDTO saveEmpleado(@Valid @RequestBody EmpleadoDTO empleadoDTO) throws HibernateOperationException {
+    public EmpleadoDTO saveEmpleado(@Valid @RequestBody EmpleadoDTO empleadoDTO) throws HibernateOperationException ,EmpleadoExistException{
         return empleadoService.saveEmpleado(empleadoDTO);
     }
 
     @PutMapping("/{idEmpleado}")
-    public EmpleadoDTO editEmpleado(@PathVariable Long idEmpleado, @RequestBody EmpleadoDTO empleadoDTO) throws HibernateOperationException, IdNotFoundException {
+    public EmpleadoDTO editEmpleado(@PathVariable Long idEmpleado, @RequestBody EmpleadoDTO empleadoDTO) throws HibernateOperationException, IdNotFoundException , EmpleadoExistException {
         return empleadoService.editEmpleado(idEmpleado, empleadoDTO);
     }
 

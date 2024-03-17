@@ -5,6 +5,7 @@ import com.hackacode.agenciaturistica.dto.ClienteDTO;
 import com.hackacode.agenciaturistica.dto.TipoServicioDTO;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
+import com.hackacode.agenciaturistica.exception.TipoServicioExistException;
 import com.hackacode.agenciaturistica.model.TipoServicio;
 import com.hackacode.agenciaturistica.repository.ITipoServicioRepository;
 import jakarta.validation.ConstraintViolationException;
@@ -50,9 +51,14 @@ public class TipoServicioImp implements ITipoServicio {
     }
 
     @Override
-    public TipoServicioDTO saveTipoServicio(TipoServicioDTO tipoServicio) throws HibernateOperationException {
+    public TipoServicioDTO saveTipoServicio(TipoServicioDTO tipoServicio) throws HibernateOperationException, TipoServicioExistException  {
 
         var tiposerviciosave = modelMapper.map(tipoServicio, TipoServicio.class);
+
+        if (tipoServicioRepo.existsByName(tipoServicio.getName())) {
+            throw new TipoServicioExistException("Ya se encuentra el nombre : " + tipoServicio.getName());
+        }
+
 
         try{
             tiposerviciosave = tipoServicioRepo.save(tiposerviciosave);
@@ -67,7 +73,14 @@ public class TipoServicioImp implements ITipoServicio {
     }
 
     @Override
-    public TipoServicioDTO editTipoServicio(Long idTipoServicio, TipoServicioDTO tipoServicioDTONew) throws HibernateOperationException, IdNotFoundException {
+    public TipoServicioDTO editTipoServicio(Long idTipoServicio, TipoServicioDTO tipoServicioDTONew) throws HibernateOperationException, IdNotFoundException,TipoServicioExistException {
+
+
+        if (tipoServicioRepo.existsByName(tipoServicioDTONew.getName())) {
+            throw new TipoServicioExistException("Ya se encuentra el nombre : " + tipoServicioDTONew.getName());
+        }
+
+
 
         TipoServicioDTO tipoServiciBD = this.getTipoServicioById(idTipoServicio) ;
 
