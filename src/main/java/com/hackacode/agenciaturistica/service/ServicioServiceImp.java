@@ -62,4 +62,50 @@ public class ServicioServiceImp implements IServicioService {
 
         return servicioDtoSave;
     }
+
+
+    @Override
+    public void deleteServicioById(Long idServicio) throws IdNotFoundException {
+
+        try {
+            this.servicioRepo.deleteById(idServicio);
+        } catch (Exception e) {
+            throw new IdNotFoundException("El id " + idServicio + " no existe");
+        }
+    }
+
+    @Override
+    public ServicioDTO editServicio(Long idServicio, ServicioDTO ServicioDTONew) throws HibernateOperationException, IdNotFoundException {
+
+
+
+        ServicioDTO ServicioBD = this.getServicioById(idServicio) ;
+
+        // aca tendria que varidar que no exista.
+
+
+        ServicioBD.setNombre(ServicioDTONew.getNombre());
+        ServicioBD.setDescripcion_breve(ServicioDTONew.getDescripcion_breve());
+        ServicioBD.setCosto_servicio(ServicioDTONew.getCosto_servicio() ) ;
+        ServicioBD.setTipoServicio(ServicioDTONew.getTipoServicio() ) ;
+        ServicioBD.setFechaServicio(ServicioDTONew.getFechaServicio() ) ;
+
+
+        var serviciosave = modelMapper.map(ServicioBD, Servicio.class);
+        serviciosave.setCodigo_servicio(idServicio) ;
+
+        try{
+            serviciosave = servicioRepo.save(serviciosave);
+
+
+        } catch (Exception ex) {
+            throw new HibernateOperationException ("Error con hibertane: " + ex.getMessage());
+        }
+
+        var serviciosaveDto= modelMapper.map( serviciosave, ServicioDTO.class);
+
+        return serviciosaveDto;
+
+
+    }
 }

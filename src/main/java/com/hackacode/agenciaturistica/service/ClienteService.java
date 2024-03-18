@@ -92,9 +92,13 @@ public class ClienteService implements IClienteService {
         clienteDTO.setCelular(clienteDTORecivido.getCelular());
         clienteDTO.setEmail(clienteDTORecivido.getEmail());
 
-        this.saveCliente(clienteDTO);
 
-        return clienteDTO;
+        Cliente cliente  = modelMapper.map(clienteDTO, Cliente.class);
+        cliente = clienteRepository.save(cliente);
+
+        ClienteDTO clienteDTODevuelto = modelMapper.map(cliente, ClienteDTO.class);
+
+        return clienteDTODevuelto;
     }
 
     @Override

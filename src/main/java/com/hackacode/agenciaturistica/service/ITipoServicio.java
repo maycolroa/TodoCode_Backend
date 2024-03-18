@@ -20,7 +20,7 @@ public interface ITipoServicio {
     public TipoServicioDTO saveTipoServicio(TipoServicioDTO tipoServicio) throws HibernateOperationException, TipoServicioExistException;
 
 
-    public TipoServicioDTO editTipoServicio(@PathVariable Long idTipoServicio, @RequestBody TipoServicioDTO tipoServicioDTO) throws HibernateOperationException, IdNotFoundException,TipoServicioExistException;
+    public TipoServicioDTO editTipoServicio(@PathVariable Long idTipoServicio, @RequestBody TipoServicioDTO tipoServicioDTO) throws HibernateOperationException, IdNotFoundException;
 
     public void deleteTipoServicioById(@PathVariable Long idTipoServicio) throws IdNotFoundException;
 

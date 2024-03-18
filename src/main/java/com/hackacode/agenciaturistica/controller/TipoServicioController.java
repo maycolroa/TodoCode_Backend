@@ -53,7 +53,7 @@ public class TipoServicioController {
 
 
     @PutMapping("/{id_tipo}")
-    public TipoServicioDTO editTipoServicio(@PathVariable Long id_tipo, @RequestBody TipoServicioDTO tipoServicioDTO) throws HibernateOperationException, IdNotFoundException,TipoServicioExistException {
+    public TipoServicioDTO editTipoServicio(@PathVariable Long id_tipo, @RequestBody TipoServicioDTO tipoServicioDTO) throws HibernateOperationException, IdNotFoundException{
         return tipoServ.editTipoServicio(id_tipo, tipoServicioDTO);
     }
 

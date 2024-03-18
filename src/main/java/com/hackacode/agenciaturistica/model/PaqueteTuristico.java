@@ -21,12 +21,35 @@ public class PaqueteTuristico {
     private double costo_paquete;
     private double descuento;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Servicio> servicios;
+
+    private double costoTotal=0.0;
+    private double descuentoActual;
+    private double precioConDescuento;
+
+
+    public void calcularCostoyDescuento(){
+
+        descuentoActual = descuentoActual * descuento ;
+        servicios.forEach(serv -> {
+
+            costoTotal = costoTotal + serv.getCosto();
+        });
+
+        precioConDescuento = costoTotal - descuentoActual ;
+
+        this.setCosto_paquete(precioConDescuento);
+
+    }
 
 
     public double getCosto(){
+
+
         return this.costo_paquete;
+
     }
+
 
 }

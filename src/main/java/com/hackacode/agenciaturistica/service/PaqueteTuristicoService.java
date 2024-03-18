@@ -47,9 +47,14 @@ public class PaqueteTuristicoService implements IPaqueteTuristicoService {
 
     @Override
     public PaqueteTuristicoDTO savePaqueteTuristico(PaqueteTuristicoDTO paqueteTuristicoDTO) throws HibernateOperationException {
+
+
         PaqueteTuristico paqueteTuristico = modelMapper.map(paqueteTuristicoDTO, PaqueteTuristico.class);
 
+
         try {
+
+            paqueteTuristico.calcularCostoyDescuento();
             paqueteTuristico = paqueteTuristicoRepository.save(paqueteTuristico);
         } catch (Exception e) {
             throw new HibernateOperationException("Error con hibertane: " + e.getMessage());

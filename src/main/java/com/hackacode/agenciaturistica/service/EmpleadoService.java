@@ -6,6 +6,7 @@ import com.hackacode.agenciaturistica.exception.EmpleadoExistException;
 import com.hackacode.agenciaturistica.exception.HibernateOperationException;
 import com.hackacode.agenciaturistica.exception.IdNotFoundException;
 import com.hackacode.agenciaturistica.exception.TipoServicioExistException;
+import com.hackacode.agenciaturistica.model.Cliente;
 import com.hackacode.agenciaturistica.model.Empleado;
 import com.hackacode.agenciaturistica.repository.IEmpleadoRepository;
 import org.modelmapper.ModelMapper;
@@ -93,9 +94,12 @@ public class EmpleadoService implements IEmpleadoService{
         empleadoDTO.setCargo(empleadoDTORecivido.getCargo());
         empleadoDTO.setSueldo(empleadoDTORecivido.getSueldo());
 
-        this.saveEmpleado(empleadoDTO);
+        Empleado empleado  = modelMapper.map(empleadoDTO, Empleado.class);
+        empleado= empleadoRepository.save(empleado);
 
-        return empleadoDTO;
+        EmpleadoDTO empleadoDTODevuelto = modelMapper.map(empleado, EmpleadoDTO.class);
+
+        return empleadoDTODevuelto;
     }
 
     @Override

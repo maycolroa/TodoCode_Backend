@@ -16,5 +16,8 @@ public interface IServicioService {
 
     public ServicioDTO saveServicio (ServicioDTO servicio) throws HibernateOperationException;
 
+    public void deleteServicioById(Long idServicio) throws IdNotFoundException;
 
-}
+    public ServicioDTO editServicio(Long idServicio, ServicioDTO ServicioDTONew) throws HibernateOperationException, IdNotFoundException;
+
+    }

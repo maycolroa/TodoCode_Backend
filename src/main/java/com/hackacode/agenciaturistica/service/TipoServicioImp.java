@@ -73,12 +73,9 @@ public class TipoServicioImp implements ITipoServicio {
     }
 
     @Override
-    public TipoServicioDTO editTipoServicio(Long idTipoServicio, TipoServicioDTO tipoServicioDTONew) throws HibernateOperationException, IdNotFoundException,TipoServicioExistException {
+    public TipoServicioDTO editTipoServicio(Long idTipoServicio, TipoServicioDTO tipoServicioDTONew) throws HibernateOperationException, IdNotFoundException{
 
 
-        if (tipoServicioRepo.existsByName(tipoServicioDTONew.getName())) {
-            throw new TipoServicioExistException("Ya se encuentra el nombre : " + tipoServicioDTONew.getName());
-        }
 
 
 
